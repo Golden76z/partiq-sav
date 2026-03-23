@@ -1,0 +1,69 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R
+   /MediaBox [0 0 612 842]
+   /Resources << /Font << /F1 4 0 R >> >>
+   /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+5 0 obj
+<< /Length 2579 >>
+stream
+BT
+/F1 14 Tf 1 0 0 1 50 780 Tm (MARQUE: DELABIE) Tj
+/F1 11 Tf 1 0 0 1 50 760 Tm (TYPE: FICHE_TECHNIQUE) Tj
+/F1 10 Tf 1 0 0 1 50 748 Tm (----------------------------------------------------------------) Tj
+/F1 16 Tf 1 0 0 1 50 730 Tm (PRODUIT: BLUETEK) Tj
+/F1 13 Tf 1 0 0 1 50 710 Tm (REFERENCE: DEL-BLTK-004) Tj
+/F1 11 Tf 1 0 0 1 50 692 Tm (CATEGORIE: Robinet electronique infrarouge) Tj
+/F1 10 Tf 1 0 0 1 50 680 Tm (----------------------------------------------------------------) Tj
+/F1 12 Tf 1 0 0 1 50 662 Tm (DESCRIPTION:) Tj
+/F1 11 Tf 1 0 0 1 50 646 Tm (Robinet electronique a detection infrarouge sans contact.) Tj
+/F1 11 Tf 1 0 0 1 50 632 Tm (Alimentation secteur 230V ou batterie lithium 6V.) Tj
+/F1 11 Tf 1 0 0 1 50 618 Tm (Detection automatique main, ouverture 0.5 seconde.) Tj
+/F1 10 Tf 1 0 0 1 50 604 Tm (----------------------------------------------------------------) Tj
+/F1 12 Tf 1 0 0 1 50 586 Tm (SPECIFICATIONS TECHNIQUES:) Tj
+/F1 11 Tf 1 0 0 1 50 570 Tm (Alimentation     : 230V secteur ou 6V batterie lithium) Tj
+/F1 11 Tf 1 0 0 1 50 556 Tm (Portee capteur   : 25 cm) Tj
+/F1 11 Tf 1 0 0 1 50 542 Tm (Debit            : 6 L/min regulateur incorpore) Tj
+/F1 11 Tf 1 0 0 1 50 528 Tm (Temporisation    : 30 secondes apres derniere detection) Tj
+/F1 11 Tf 1 0 0 1 50 514 Tm (Classe           : IP67) Tj
+/F1 10 Tf 1 0 0 1 50 500 Tm (----------------------------------------------------------------) Tj
+/F1 12 Tf 1 0 0 1 50 482 Tm (PIECES DETACHEES:) Tj
+/F1 10 Tf 1 0 0 1 50 466 Tm (REFERENCE           NOM                              STOCK) Tj
+/F1 10 Tf 1 0 0 1 50 453 Tm (DEL-BLTK-CAP-001    Capteur infrarouge               12) Tj
+/F1 10 Tf 1 0 0 1 50 440 Tm (DEL-BLTK-PIL-001    Pile lithium 6V                  85) Tj
+/F1 10 Tf 1 0 0 1 50 427 Tm (DEL-TMPS-JNT-001    Joint torique 12mm commun        120) Tj
+/F1 10 Tf 1 0 0 1 50 414 Tm (----------------------------------------------------------------) Tj
+/F1 12 Tf 1 0 0 1 50 396 Tm (COMPATIBILITE PIECES DETACHEES:) Tj
+/F1 10 Tf 1 0 0 1 50 380 Tm (- DEL-BLTK-CAP-001 compatible avec: DEL-BLTK-004) Tj
+/F1 10 Tf 1 0 0 1 50 367 Tm (- DEL-BLTK-PIL-001 compatible avec: DEL-BLTK-004) Tj
+/F1 10 Tf 1 0 0 1 50 354 Tm (- DEL-TMPS-JNT-001 compatible avec: DEL-TMPS-001, DEL-TMSF-003, DEL-BLTK-004) Tj
+/F1 10 Tf 1 0 0 1 50 341 Tm (----------------------------------------------------------------) Tj
+/F1 12 Tf 1 0 0 1 50 323 Tm (SERVICE APRES-VENTE PARTIQ) Tj
+/F1 11 Tf 1 0 0 1 50 307 Tm (Marque: DELABIE  |  Ref: DEL-BLTK-004) Tj
+/F1 11 Tf 1 0 0 1 50 293 Tm (Email: sav@partiq.fr  |  Tel: +33 1 00 00 00 00) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000250 00000 n 
+0000000318 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2949
+%%EOF
