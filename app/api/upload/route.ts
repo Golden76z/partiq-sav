@@ -6,6 +6,30 @@ import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 
+/** Extract plain text from an uncompressed PDF buffer without any dependencies. */
+function extractPdfText(buffer: Buffer): string {
+  const raw = buffer.toString("binary");
+  const lines: string[] = [];
+  // Walk every content stream (stream … endstream)
+  const streamRe = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+  let sm: RegExpExecArray | null;
+  while ((sm = streamRe.exec(raw)) !== null) {
+    const stream = sm[1];
+    // Pick up all (text) Tj / [(text)] TJ operators
+    const tjRe = /\(([^)]*)\)\s*T[jJ]/g;
+    let tj: RegExpExecArray | null;
+    while ((tj = tjRe.exec(stream)) !== null) {
+      const text = tj[1]
+        .replace(/\\\(/g, "(")
+        .replace(/\\\)/g, ")")
+        .replace(/\\\\/g, "\\")
+        .trim();
+      if (text) lines.push(text);
+    }
+  }
+  return lines.join("\n");
+}
+
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
@@ -41,22 +65,15 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(bytes);
     await writeFile(filePath, buffer);
 
-    // Extract text from PDF (check both MIME type and extension)
+    // Extract text from PDF without external dependencies
     const isPdf =
       file.type === "application/pdf" ||
       file.name.toLowerCase().endsWith(".pdf");
 
     let extractedText = "";
     if (isPdf) {
-      try {
-        const pdfParse = (await import("pdf-parse")).default;
-        const data = await pdfParse(buffer);
-        extractedText = data.text ?? "";
-        console.log("[upload] pdf-parse OK, chars:", extractedText.trim().length);
-      } catch (pdfErr) {
-        console.error("[upload] pdf-parse failed:", pdfErr);
-        extractedText = "";
-      }
+      extractedText = extractPdfText(buffer);
+      console.log("[upload] pdf extract chars:", extractedText.trim().length);
     }
 
     // Use AI to extract structured data

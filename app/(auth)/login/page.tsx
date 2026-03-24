@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 
@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError]       = useState("");
   const [loading, setLoading]   = useState(false);
-  const router                  = useRouter();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,10 +26,10 @@ export default function LoginPage() {
 
     setLoading(false);
 
-    if (result?.error) {
+    if (result?.error || !result?.ok) {
       setError("Email ou mot de passe incorrect.");
     } else {
-      router.push("/");
+      window.location.href = "/catalogue";
     }
   };
 

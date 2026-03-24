@@ -1,4 +1,5 @@
 .PHONY: help \
+	setup \
 	dev \
 	db-up db-wait db-down db-migrate db-reset db-seed db-studio db-bootstrap \
 	lint build \
@@ -24,9 +25,33 @@ GRAY    := $(shell tput setaf 8 2>/dev/null || tput setaf 7 2>/dev/null || echo 
 BOLD    := $(shell tput bold 2>/dev/null || echo "")
 NC      := $(shell tput sgr0 2>/dev/null || echo "")
 
+setup: ## ✨ PREMIER LANCEMENT — installe, build Docker, migre et seed
+	@if [ ! -f .env ]; then \
+		printf "$(RED)Erreur : fichier .env manquant.$(NC)\n"; \
+		printf "  → $(BOLD)cp .env.example .env$(NC) puis renseigner GROQ_API_KEY\n"; \
+		exit 1; \
+	fi
+	@printf "$(CYAN)Installation des dépendances Node...$(NC)\n"
+	@npm install
+	@printf "$(GREEN)Démarrage de la stack Docker...$(NC)\n"
+	@docker compose up -d --build
+	@printf "$(YELLOW)Attente de Postgres...$(NC)\n"
+	@until docker compose exec -T postgres pg_isready -U $(POSTGRES_USER) -d $(POSTGRES_DB) >/dev/null 2>&1; do sleep 1; done
+	@printf "$(YELLOW)Application des migrations...$(NC)\n"
+	@DATABASE_URL="$(LOCAL_DATABASE_URL)" ./node_modules/.bin/prisma migrate deploy
+	@printf "$(YELLOW)Insertion des données de démonstration...$(NC)\n"
+	@DATABASE_URL="$(LOCAL_DATABASE_URL)" npm run db:seed
+	@printf "\n$(GREEN)$(BOLD)✓ PartiQ SAV est prêt !$(NC)\n"
+	@printf "  App     : $(BOLD)http://localhost:3000$(NC)\n"
+	@printf "  Adminer : $(BOLD)http://localhost:8080$(NC)\n"
+	@printf "  Login   : $(BOLD)admin@partiq.fr$(NC) / $(BOLD)admin123$(NC)\n\n"
+
 help: ## Afficher l'aide
 	@printf "$(BOLD)$(CYAN)PartiQ SAV$(NC)\n\n"
-	@printf "$(BOLD)$(CYAN)Dev$(NC)\n"
+	@printf "$(BOLD)$(GREEN)Premier lancement$(NC)\n"
+	@grep -E '^(setup):.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-22s$(NC) %s\n", $$1, $$2}'
+	@printf "\n$(BOLD)$(CYAN)Dev$(NC)\n"
 	@grep -E '^(dev):.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  $(CYAN)%-22s$(NC) %s\n", $$1, $$2}'
 	@printf "\n$(BOLD)$(YELLOW)Base de données$(NC)\n"
