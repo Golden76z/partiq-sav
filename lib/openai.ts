@@ -1,17 +1,15 @@
 import OpenAI from "openai";
 
 const GROQ_BASE_URL = "https://api.groq.com/openai/v1";
-const GROQ_MODEL    = "llama-3.3-70b-versatile";
+const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 let _client: OpenAI | null = null;
 
 function getGroq(): OpenAI {
-  if (!_client) {
-    _client = new OpenAI({
-      apiKey: process.env.GROQ_API_KEY,
-      baseURL: GROQ_BASE_URL,
-    });
-  }
+  _client ??= new OpenAI({
+    apiKey: process.env.GROQ_API_KEY,
+    baseURL: GROQ_BASE_URL,
+  });
   return _client;
 }
 
@@ -69,7 +67,10 @@ Retourne UNIQUEMENT un JSON valide avec ces champs :
 
   const raw = response.choices[0].message.content ?? "{}";
   // Strip markdown code fences if Groq wraps the JSON
-  const content = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/i, "").trim();
+  const content = raw
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```\s*$/i, "")
+    .trim();
   try {
     return JSON.parse(content);
   } catch {
