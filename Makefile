@@ -146,7 +146,7 @@ docker-up: ## Démarrer la stack complète (Postgres + App + Adminer)
 	@printf "$(YELLOW)Libération du port 5432 si occupé...$(NC)\n"
 	@docker ps --format "{{.ID}}" --filter "publish=5432" | xargs -r docker stop 2>/dev/null || true
 	@printf "$(GREEN)Démarrage de la stack Docker...$(NC)\n"
-	@docker compose up -d --build
+	@docker compose up --build
 	@printf "$(GREEN)Stack démarrée.$(NC)\n"
 	@printf "  App     : $(BOLD)http://localhost:3000$(NC)\n"
 	@printf "  Adminer : $(BOLD)http://localhost:8080$(NC)\n"
