@@ -4,10 +4,17 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(
   _req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } | { params: Promise<{ id: string }> },
 ) {
+  let id: string;
+  if (context.params instanceof Promise) {
+    const resolved = await context.params;
+    id = resolved.id;
+  } else {
+    id = context.params.id;
+  }
   const doc = await prisma.document.update({
-    where: { id: params.id },
+    where: { id },
     data: { confirmed: true },
     include: { brand: true, product: true },
   });

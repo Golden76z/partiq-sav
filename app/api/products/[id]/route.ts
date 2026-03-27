@@ -4,10 +4,17 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } | { params: Promise<{ id: string }> },
 ) {
+  let id: string;
+  if (context.params instanceof Promise) {
+    const resolved = await context.params;
+    id = resolved.id;
+  } else {
+    id = context.params.id;
+  }
   const product = await prisma.product.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       brand: true,
       spareParts: true,
@@ -20,6 +27,7 @@ export async function GET(
     },
   });
 
-  if (!product) return NextResponse.json({ error: "Produit introuvable" }, { status: 404 });
+  if (!product)
+    return NextResponse.json({ error: "Produit introuvable" }, { status: 404 });
   return NextResponse.json(product);
 }

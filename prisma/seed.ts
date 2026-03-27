@@ -1,4 +1,4 @@
-import { PrismaClient, Role, DocumentType } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -60,7 +60,8 @@ async function main() {
       name: "TEMPOSTOP",
       reference: "DEL-TMPS-001",
       category: "Robinet temporisé",
-      description: "Robinet temporisé à poussoir pour lavabo, temporisation réglable de 5 à 30 secondes. Conforme aux normes EN 200.",
+      description:
+        "Robinet temporisé à poussoir pour lavabo, temporisation réglable de 5 à 30 secondes. Conforme aux normes EN 200.",
     },
   });
 
@@ -72,7 +73,8 @@ async function main() {
       name: "SECURITHERM",
       reference: "DEL-SCTH-002",
       category: "Mitigeur thermostatique",
-      description: "Mitigeur thermostatique anti-brûlure avec limiteur de température à 38°C. Idéal pour établissements de santé.",
+      description:
+        "Mitigeur thermostatique anti-brûlure avec limiteur de température à 38°C. Idéal pour établissements de santé.",
     },
   });
 
@@ -84,7 +86,8 @@ async function main() {
       name: "TEMPOSOFT",
       reference: "DEL-TMSF-003",
       category: "Robinet poussoir",
-      description: "Robinet poussoir avec tête céramique et corps en laiton chromé. Débit régulé 6 L/min.",
+      description:
+        "Robinet poussoir avec tête céramique et corps en laiton chromé. Débit régulé 6 L/min.",
     },
   });
 
@@ -96,7 +99,8 @@ async function main() {
       name: "BLUETEK",
       reference: "DEL-BLTK-004",
       category: "Robinet électronique",
-      description: "Robinet électronique infrarouge sans contact, alimentation secteur 230V ou batterie 6V.",
+      description:
+        "Robinet électronique infrarouge sans contact, alimentation secteur 230V ou batterie 6V.",
     },
   });
 
@@ -108,7 +112,8 @@ async function main() {
       name: "BIOFIL",
       reference: "DEL-BIOF-005",
       category: "Filtre anti-bactérien",
-      description: "Filtre anti-bactérien point d'usage, rétention à 0,2 micron, durée d'utilisation 30 jours.",
+      description:
+        "Filtre anti-bactérien point d'usage, rétention à 0,2 micron, durée d'utilisation 30 jours.",
     },
   });
 
@@ -121,7 +126,8 @@ async function main() {
       name: "DOMO",
       reference: "KWC-DOMO-001",
       category: "Mitigeur cuisine",
-      description: "Mitigeur cuisine avec bec pivotant 360°, douchette extractible 2 jets, finition inox.",
+      description:
+        "Mitigeur cuisine avec bec pivotant 360°, douchette extractible 2 jets, finition inox.",
     },
   });
 
@@ -133,7 +139,8 @@ async function main() {
       name: "ONO",
       reference: "KWC-ONO-002",
       category: "Mitigeur lavabo",
-      description: "Mitigeur lavabo design épuré, cartouche céramique 35mm, économiseur d'eau intégré.",
+      description:
+        "Mitigeur lavabo design épuré, cartouche céramique 35mm, économiseur d'eau intégré.",
     },
   });
 
@@ -145,7 +152,8 @@ async function main() {
       name: "AVA",
       reference: "KWC-AVA-003",
       category: "Robinet cuisine",
-      description: "Robinet cuisine à bec haut articulé, corps en laiton massif, cartouche céramique longue durée.",
+      description:
+        "Robinet cuisine à bec haut articulé, corps en laiton massif, cartouche céramique longue durée.",
     },
   });
 
@@ -157,7 +165,8 @@ async function main() {
       name: "INOX STAR",
       reference: "KWC-INOX-004",
       category: "Robinet collectivité",
-      description: "Robinet collectivité tout inox 304L, résistant aux produits de nettoyage, démontage facilité.",
+      description:
+        "Robinet collectivité tout inox 304L, résistant aux produits de nettoyage, démontage facilité.",
     },
   });
 
@@ -170,7 +179,8 @@ async function main() {
       name: "THERMOSTAT DOUCHE",
       reference: "DVS-THERM-001",
       category: "Mitigeur thermostatique douche",
-      description: "Mitigeur thermostatique douche encastré, 2 sorties, température préréglée 38°C, limiteur anti-brûlure.",
+      description:
+        "Mitigeur thermostatique douche encastré, 2 sorties, température préréglée 38°C, limiteur anti-brûlure.",
     },
   });
 
@@ -182,7 +192,8 @@ async function main() {
       name: "COMPACT",
       reference: "DVS-CMPT-002",
       category: "Robinet urinoir",
-      description: "Robinet temporisé pour urinoir, débit 1,5 L/chasse, corps laiton, alimentation 1/2\".",
+      description:
+        'Robinet temporisé pour urinoir, débit 1,5 L/chasse, corps laiton, alimentation 1/2".',
     },
   });
 
@@ -194,7 +205,8 @@ async function main() {
       name: "HYGIENE PRO",
       reference: "DVS-HYG-003",
       category: "Robinet hygiène",
-      description: "Robinet hygiène coude commande au coude ou genou, idéal milieu médical et cuisine professionnelle.",
+      description:
+        "Robinet hygiène coude commande au coude ou genou, idéal milieu médical et cuisine professionnelle.",
     },
   });
 
@@ -206,7 +218,8 @@ async function main() {
       productId: tempostop.id,
       name: "Cartouche temporisée 5-30s",
       reference: "DEL-TMPS-CAR-001",
-      description: "Cartouche de remplacement temporisée, réglage de 5 à 30 secondes.",
+      description:
+        "Cartouche de remplacement temporisée, réglage de 5 à 30 secondes.",
       compatibility: ["DEL-TMPS-001", "DEL-TMSF-003"],
       stock: 42,
     },
@@ -219,7 +232,8 @@ async function main() {
       productId: tempostop.id,
       name: "Joint torique Ø12mm",
       reference: "DEL-TMPS-JNT-001",
-      description: "Kit de 5 joints toriques de remplacement pour robinet temporisé.",
+      description:
+        "Kit de 5 joints toriques de remplacement pour robinet temporisé.",
       compatibility: ["DEL-TMPS-001", "DEL-TMSF-003", "DEL-BLTK-004"],
       stock: 120,
     },
@@ -232,7 +246,8 @@ async function main() {
       productId: tempostop.id,
       name: "Bouton poussoir chromé",
       reference: "DEL-TMPS-BTN-001",
-      description: "Bouton poussoir de remplacement finition chromée brillante.",
+      description:
+        "Bouton poussoir de remplacement finition chromée brillante.",
       compatibility: ["DEL-TMPS-001"],
       stock: 18,
     },
@@ -246,7 +261,8 @@ async function main() {
       productId: securitherm.id,
       name: "Cartouche thermostatique 38°C",
       reference: "DEL-SCTH-CAR-001",
-      description: "Cartouche thermostatique de rechange avec limiteur de température.",
+      description:
+        "Cartouche thermostatique de rechange avec limiteur de température.",
       compatibility: ["DEL-SCTH-002", "DVS-THERM-001"],
       stock: 25,
     },
@@ -273,7 +289,8 @@ async function main() {
       productId: bluetek.id,
       name: "Capteur infrarouge",
       reference: "DEL-BLTK-CAP-001",
-      description: "Module capteur infrarouge de remplacement pour robinet électronique.",
+      description:
+        "Module capteur infrarouge de remplacement pour robinet électronique.",
       compatibility: ["DEL-BLTK-004"],
       stock: 12,
     },
@@ -286,7 +303,8 @@ async function main() {
       productId: bluetek.id,
       name: "Pile 6V lithium",
       reference: "DEL-BLTK-PIL-001",
-      description: "Pile lithium 6V pour alimentation batterie robinet BLUETEK.",
+      description:
+        "Pile lithium 6V pour alimentation batterie robinet BLUETEK.",
       compatibility: ["DEL-BLTK-004"],
       stock: 85,
     },
@@ -313,7 +331,8 @@ async function main() {
       productId: domo.id,
       name: "Douchette extractible 2 jets",
       reference: "KWC-DOMO-DOU-001",
-      description: "Douchette de cuisine extractible 2 fonctions jet/pluie avec flexible 1,5m.",
+      description:
+        "Douchette de cuisine extractible 2 fonctions jet/pluie avec flexible 1,5m.",
       compatibility: ["KWC-DOMO-001"],
       stock: 14,
     },
@@ -327,7 +346,8 @@ async function main() {
       productId: thermostat.id,
       name: "Cartouche thermostatique DVS",
       reference: "DVS-THERM-CAR-001",
-      description: "Cartouche thermostatique de remplacement pour mitigeur douche DVS.",
+      description:
+        "Cartouche thermostatique de remplacement pour mitigeur douche DVS.",
       compatibility: ["DVS-THERM-001"],
       stock: 20,
     },
@@ -341,7 +361,8 @@ async function main() {
       productId: biofil.id,
       name: "Filtre de rechange 0,2 micron",
       reference: "DEL-BIOF-FIL-001",
-      description: "Filtre anti-bactérien de remplacement, durée d'utilisation 30 jours, rétention 0,2 micron.",
+      description:
+        "Filtre anti-bactérien de remplacement, durée d'utilisation 30 jours, rétention 0,2 micron.",
       compatibility: ["DEL-BIOF-005"],
       stock: 95,
     },
@@ -368,7 +389,8 @@ async function main() {
       productId: temposoft.id,
       name: "Cartouche céramique temporisée",
       reference: "DEL-TMSF-CAR-001",
-      description: "Cartouche de remplacement pour robinet poussoir TEMPOSOFT, temporisation fixe 8 secondes.",
+      description:
+        "Cartouche de remplacement pour robinet poussoir TEMPOSOFT, temporisation fixe 8 secondes.",
       compatibility: ["DEL-TMSF-003", "DEL-TMPS-001"],
       stock: 35,
     },
@@ -381,7 +403,8 @@ async function main() {
       productId: temposoft.id,
       name: "Tête de robinet poussoir complète",
       reference: "DEL-TMSF-TEP-001",
-      description: "Tête complète de remplacement avec ressort et joint pour robinet TEMPOSOFT.",
+      description:
+        "Tête complète de remplacement avec ressort et joint pour robinet TEMPOSOFT.",
       compatibility: ["DEL-TMSF-003"],
       stock: 22,
     },
@@ -395,7 +418,8 @@ async function main() {
       productId: compact.id,
       name: "Membrane de chasse 1,5L",
       reference: "DVS-CMPT-MEM-001",
-      description: "Membrane hydraulique de remplacement pour robinet temporisé urinoir DVS COMPACT.",
+      description:
+        "Membrane hydraulique de remplacement pour robinet temporisé urinoir DVS COMPACT.",
       compatibility: ["DVS-CMPT-002"],
       stock: 28,
     },
@@ -408,7 +432,8 @@ async function main() {
       productId: compact.id,
       name: "Kit joints urinoir",
       reference: "DVS-CMPT-JNT-001",
-      description: "Kit complet de joints (x6) pour entretien robinet urinoir DVS COMPACT.",
+      description:
+        "Kit complet de joints (x6) pour entretien robinet urinoir DVS COMPACT.",
       compatibility: ["DVS-CMPT-002", "DVS-HYG-003"],
       stock: 60,
     },
@@ -422,7 +447,8 @@ async function main() {
       productId: hygiene.id,
       name: "Cartouche commande genou/coude",
       reference: "DVS-HYG-CAR-001",
-      description: "Cartouche de remplacement pour commande au genou ou au coude, robinet hygiène DVS.",
+      description:
+        "Cartouche de remplacement pour commande au genou ou au coude, robinet hygiène DVS.",
       compatibility: ["DVS-HYG-003"],
       stock: 16,
     },
@@ -435,7 +461,8 @@ async function main() {
       productId: hygiene.id,
       name: "Bec orientable 360°",
       reference: "DVS-HYG-BEC-001",
-      description: "Bec pivotant 360° de remplacement pour robinet hygiène DVS HYGIENE PRO.",
+      description:
+        "Bec pivotant 360° de remplacement pour robinet hygiène DVS HYGIENE PRO.",
       compatibility: ["DVS-HYG-003"],
       stock: 11,
     },
@@ -449,7 +476,8 @@ async function main() {
       productId: ono.id,
       name: "Économiseur d'eau 5L/min",
       reference: "KWC-ONO-ECO-001",
-      description: "Mousseur économiseur de remplacement 5 L/min pour mitigeur lavabo KWC ONO.",
+      description:
+        "Mousseur économiseur de remplacement 5 L/min pour mitigeur lavabo KWC ONO.",
       compatibility: ["KWC-ONO-002", "KWC-DOMO-001", "KWC-AVA-003"],
       stock: 74,
     },
@@ -462,7 +490,8 @@ async function main() {
       productId: ono.id,
       name: "Poignée de remplacement ONO",
       reference: "KWC-ONO-POI-001",
-      description: "Poignée levier de remplacement pour mitigeur lavabo KWC ONO, finition chromée.",
+      description:
+        "Poignée levier de remplacement pour mitigeur lavabo KWC ONO, finition chromée.",
       compatibility: ["KWC-ONO-002"],
       stock: 19,
     },
@@ -476,7 +505,8 @@ async function main() {
       productId: ava.id,
       name: "Bec cuisine articulé haut",
       reference: "KWC-AVA-BEC-001",
-      description: "Bec haut articulé de remplacement pour robinet cuisine KWC AVA, corps laiton.",
+      description:
+        "Bec haut articulé de remplacement pour robinet cuisine KWC AVA, corps laiton.",
       compatibility: ["KWC-AVA-003"],
       stock: 8,
     },
@@ -490,7 +520,8 @@ async function main() {
       productId: inox.id,
       name: "Cartouche inox longue durée",
       reference: "KWC-INOX-CAR-001",
-      description: "Cartouche céramique longue durée en inox 304L pour robinet collectivité KWC INOX STAR.",
+      description:
+        "Cartouche céramique longue durée en inox 304L pour robinet collectivité KWC INOX STAR.",
       compatibility: ["KWC-INOX-004", "KWC-AVA-003"],
       stock: 31,
     },
@@ -504,7 +535,8 @@ async function main() {
         productId: tempostop.id,
         productRef: "DEL-TMPS-001",
         title: "Fuite au niveau du bouton poussoir",
-        description: "Le robinet TEMPOSTOP présente une fuite importante au niveau du bouton poussoir après 2 ans d'utilisation. Besoin d'un remplacement de cartouche.",
+        description:
+          "Le robinet TEMPOSTOP présente une fuite importante au niveau du bouton poussoir après 2 ans d'utilisation. Besoin d'un remplacement de cartouche.",
         status: "OUVERT",
         attachments: [],
       },
@@ -513,7 +545,8 @@ async function main() {
         productId: securitherm.id,
         productRef: "DEL-SCTH-002",
         title: "Température non régulée — trop chaude",
-        description: "Le SECURITHERM ne régule plus la température correctement. L'eau sort à plus de 50°C malgré la limite réglée à 38°C.",
+        description:
+          "Le SECURITHERM ne régule plus la température correctement. L'eau sort à plus de 50°C malgré la limite réglée à 38°C.",
         status: "EN_COURS",
         attachments: [],
       },
@@ -522,7 +555,8 @@ async function main() {
         productId: bluetek.id,
         productRef: "DEL-BLTK-004",
         title: "Capteur infrarouge défaillant",
-        description: "Le robinet BLUETEK ne détecte plus la présence des mains. La LED clignote en rouge indiquant une erreur capteur.",
+        description:
+          "Le robinet BLUETEK ne détecte plus la présence des mains. La LED clignote en rouge indiquant une erreur capteur.",
         status: "RESOLU",
         attachments: [],
       },
@@ -531,7 +565,8 @@ async function main() {
         productId: domo.id,
         productRef: "KWC-DOMO-001",
         title: "Douchette qui fuit à la jonction",
-        description: "La douchette extractible du mitigeur KWC DOMO fuit au niveau du raccord avec le flexible.",
+        description:
+          "La douchette extractible du mitigeur KWC DOMO fuit au niveau du raccord avec le flexible.",
         status: "OUVERT",
         attachments: [],
       },
@@ -540,7 +575,8 @@ async function main() {
         productId: thermostat.id,
         productRef: "DVS-THERM-001",
         title: "Remplacement cartouche thermostatique",
-        description: "Demande de remplacement préventif de la cartouche thermostatique DVS après 5 ans d'utilisation en établissement de santé.",
+        description:
+          "Demande de remplacement préventif de la cartouche thermostatique DVS après 5 ans d'utilisation en établissement de santé.",
         status: "FERME",
         attachments: [],
       },
@@ -554,11 +590,11 @@ async function main() {
   console.log("   Produits: 11 | Pièces détachées: 11 | Tickets: 5");
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+try {
+  await main();
+} catch (e) {
+  console.error(e);
+  process.exit(1);
+} finally {
+  await prisma.$disconnect();
+}

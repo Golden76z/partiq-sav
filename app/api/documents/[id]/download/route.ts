@@ -1,15 +1,25 @@
 export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { readFile } from "fs/promises";
-import path from "path";
+import { readFile } from "node:fs/promises";
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } } | { params: Promise<{ id: string }> },
 ) {
-  const doc = await prisma.document.findUnique({ where: { id: params.id } });
-  if (!doc) return NextResponse.json({ error: "Document introuvable" }, { status: 404 });
+  let id: string;
+  if (context.params instanceof Promise) {
+    const resolved = await context.params;
+    id = resolved.id;
+  } else {
+    id = context.params.id;
+  }
+  const doc = await prisma.document.findUnique({ where: { id } });
+  if (!doc)
+    return NextResponse.json(
+      { error: "Document introuvable" },
+      { status: 404 },
+    );
 
   try {
     const buffer = await readFile(doc.filePath);
@@ -21,6 +31,9 @@ export async function GET(
       },
     });
   } catch {
-    return NextResponse.json({ error: "Fichier introuvable sur le serveur" }, { status: 404 });
+    return NextResponse.json(
+      { error: "Fichier introuvable sur le serveur" },
+      { status: 404 },
+    );
   }
 }
