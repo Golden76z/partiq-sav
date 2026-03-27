@@ -33,6 +33,8 @@ setup: ## ✨ PREMIER LANCEMENT — installe, build Docker, migre et seed
 	fi
 	@printf "$(CYAN)Installation des dépendances Node...$(NC)\n"
 	@npm install
+	@printf "$(YELLOW)Libération du port 5432 si occupé...$(NC)\n"
+	@docker ps --format "{{.ID}}" --filter "publish=5432" | xargs -r docker stop 2>/dev/null || true
 	@printf "$(GREEN)Démarrage de la stack Docker...$(NC)\n"
 	@docker compose up -d --build
 	@printf "$(YELLOW)Attente de Postgres...$(NC)\n"
@@ -139,6 +141,8 @@ build: ## Construire le bundle de production Next.js
 # -----------------------
 
 docker-up: ## Démarrer la stack complète (Postgres + App + Adminer)
+	@printf "$(YELLOW)Libération du port 5432 si occupé...$(NC)\n"
+	@docker ps --format "{{.ID}}" --filter "publish=5432" | xargs -r docker stop 2>/dev/null || true
 	@printf "$(GREEN)Démarrage de la stack Docker...$(NC)\n"
 	@docker compose up -d --build
 	@printf "$(GREEN)Stack démarrée.$(NC)\n"
@@ -146,7 +150,7 @@ docker-up: ## Démarrer la stack complète (Postgres + App + Adminer)
 	@printf "  Adminer : $(BOLD)http://localhost:8080$(NC)\n"
 
 docker-down: ## Arrêter la stack Docker
-	@docker compose down
+	@docker compose down --remove-orphans
 
 docker-logs: ## Afficher les logs Docker en temps réel
 	@docker compose logs -f

@@ -1,11 +1,13 @@
-import { Navbar } from "@/components/ui/Navbar";
+import { Sidebar } from "@/components/ui/Sidebar";
 import { ChatWidget } from "@/components/chatbot/ChatWidget";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">{children}</main>
+    <div className="flex h-screen overflow-hidden bg-gray-50">
+      <Sidebar />
+      <main className="flex-1 overflow-y-auto">
+        {children}
+      </main>
       <ChatWidget />
     </div>
   );

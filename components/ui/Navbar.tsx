@@ -7,8 +7,12 @@ import { Button } from "./Button";
 
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "/catalogue", label: "Catalogue" },
   { href: "/dashboard", label: "Tableau de bord" },
+  { href: "/catalogue", label: "Catalogue" },
+  { href: "/tickets", label: "Tickets" },
+  { href: "/knowledge-base", label: "Documents" },
+  { href: "/upload", label: "Importer" },
+  { href: "/admin", label: "Admin" },
 ];
 
 export function Navbar() {

@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { TicketRow } from "@/components/dashboard/TicketRow";
 import { StatsCard } from "@/components/ui/StatsCard";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { formatDateTime, documentTypeLabel } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { Upload, Plus, MessageSquare, BookOpen } from "lucide-react";
 
 interface Stats   { totalProducts: number; totalTickets: number; totalDocuments: number; openTickets: number; pendingDocs: number }
 interface Ticket  { id: string; title: string; description: string; status: string; productRef?: string | null; createdAt: string; user: { name: string; email: string }; product?: { name: string; brand: { name: string } } | null }
@@ -112,6 +114,38 @@ export default function DashboardPage() {
           } color="bg-green-100 text-green-700" sub={stats.pendingDocs > 0 ? `${stats.pendingDocs} en attente` : undefined} />
         </div>
       )}
+
+      {/* Quick Actions */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <Link href="/upload" className="bg-delabie-blue text-white rounded-xl p-4 hover:bg-delabie-blue-dark transition-colors flex items-center gap-3">
+          <Upload className="w-5 h-5 flex-shrink-0" />
+          <div>
+            <p className="font-semibold text-sm">Importer</p>
+            <p className="text-blue-200 text-xs">Ajouter un document</p>
+          </div>
+        </Link>
+        <Link href="/tickets/new" className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow flex items-center gap-3">
+          <Plus className="w-5 h-5 text-delabie-blue flex-shrink-0" />
+          <div>
+            <p className="font-semibold text-sm text-delabie-text">Nouveau ticket</p>
+            <p className="text-delabie-gray-dark text-xs">Créer une demande</p>
+          </div>
+        </Link>
+        <Link href="/catalogue" className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow flex items-center gap-3">
+          <MessageSquare className="w-5 h-5 text-delabie-blue flex-shrink-0" />
+          <div>
+            <p className="font-semibold text-sm text-delabie-text">Catalogue</p>
+            <p className="text-delabie-gray-dark text-xs">Parcourir les produits</p>
+          </div>
+        </Link>
+        <Link href="/knowledge-base" className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow flex items-center gap-3">
+          <BookOpen className="w-5 h-5 text-delabie-blue flex-shrink-0" />
+          <div>
+            <p className="font-semibold text-sm text-delabie-text">Documents</p>
+            <p className="text-delabie-gray-dark text-xs">Base de connaissances</p>
+          </div>
+        </Link>
+      </div>
 
       {/* Tabs */}
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
