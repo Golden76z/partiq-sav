@@ -33,6 +33,8 @@ setup: ## ✨ PREMIER LANCEMENT — installe, build Docker, migre et seed
 	fi
 	@printf "$(CYAN)Installation des dépendances Node...$(NC)\n"
 	@npm install
+	@printf "$(YELLOW)Génération du client Prisma...$(NC)\n"
+	@./node_modules/.bin/prisma generate
 	@printf "$(YELLOW)Libération du port 5432 si occupé...$(NC)\n"
 	@docker ps --format "{{.ID}}" --filter "publish=5432" | xargs -r docker stop 2>/dev/null || true
 	@printf "$(GREEN)Démarrage de la stack Docker...$(NC)\n"
