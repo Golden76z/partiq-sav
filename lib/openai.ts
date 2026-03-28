@@ -6,6 +6,10 @@ const GROQ_MODEL    = "llama-3.3-70b-versatile";
 let _client: OpenAI | null = null;
 
 function getGroq(): OpenAI {
+  if (!process.env.GROQ_API_KEY?.trim()) {
+    throw new Error("GROQ_API_KEY manquante dans l'environnement du serveur");
+  }
+
   if (!_client) {
     _client = new OpenAI({
       apiKey: process.env.GROQ_API_KEY,

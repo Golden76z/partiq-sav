@@ -116,7 +116,18 @@ export function ChatWidget() {
           }),
         });
 
-        if (!res.ok) throw new Error("Erreur réseau");
+        if (!res.ok) {
+          let errorMessage = "Une erreur est survenue. Veuillez reessayer.";
+          try {
+            const data = await res.json();
+            if (typeof data?.error === "string" && data.error.trim()) {
+              errorMessage = data.error;
+            }
+          } catch {
+            // Ignore JSON parsing errors and keep the fallback message.
+          }
+          throw new Error(errorMessage);
+        }
 
         const reader  = res.body?.getReader();
         const decoder = new TextDecoder();
@@ -140,11 +151,15 @@ export function ChatWidget() {
             } catch { /* skip */ }
           }
         }
-      } catch {
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error && error.message.trim()
+            ? error.message
+            : "Une erreur est survenue. Veuillez reessayer.";
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantMsg.id
-              ? { ...m, content: "Une erreur est survenue. Veuillez réessayer." }
+              ? { ...m, content: errorMessage }
               : m
           )
         );

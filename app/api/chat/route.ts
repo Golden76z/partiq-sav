@@ -5,6 +5,29 @@ import { prisma } from "@/lib/prisma";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
+function getChatErrorMessage(err: unknown): string {
+  if (err instanceof Error) {
+    const message = err.message.trim();
+    if (!message) return "Erreur du chatbot";
+
+    if (/GROQ_API_KEY/i.test(message)) {
+      return "Le chatbot n'est pas configure. Verifiez GROQ_API_KEY dans le conteneur app.";
+    }
+
+    if (/fetch failed|ENOTFOUND|ECONNREFUSED|ETIMEDOUT|network/i.test(message)) {
+      return "Le conteneur app n'arrive pas a joindre Groq. Verifiez reseau, DNS et acces sortant HTTPS.";
+    }
+
+    if (/401|403|authentication|invalid api key|incorrect api key/i.test(message)) {
+      return "La cle GROQ_API_KEY est absente, invalide ou refusee par Groq.";
+    }
+
+    return message;
+  }
+
+  return "Erreur du chatbot";
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -202,6 +225,6 @@ export async function POST(req: Request) {
     });
   } catch (err) {
     console.error("Chat error:", err);
-    return NextResponse.json({ error: "Erreur du chatbot" }, { status: 500 });
+    return NextResponse.json({ error: getChatErrorMessage(err) }, { status: 500 });
   }
 }
