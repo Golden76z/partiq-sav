@@ -122,7 +122,7 @@ export default function PreviewPage() {
             <span>🤖</span> Données extraites par l&apos;IA
           </h2>
 
-          {extracted.summary && (
+            {extracted.summary ? (
             <div className="bg-delabie-blue-pale rounded-xl p-4 mb-4 border border-delabie-blue/10">
               <p className="text-sm text-delabie-blue font-medium mb-1">Résumé</p>
               <p className="text-sm text-delabie-text">{extracted.summary}</p>
@@ -133,7 +133,7 @@ export default function PreviewPage() {
             <div>
               <p className="text-xs text-gray-400 mb-0.5">Marque détectée</p>
               <p className="font-medium text-delabie-text">
-                {extracted.brand ?? <span className="text-gray-400 italic">Non détectée</span>}
+                  {extracted.brand?.name ?? <span className="text-gray-400 italic">Non détectée</span>}
               </p>
               {doc.brand && (
                 <p className="text-xs text-green-600 mt-0.5">✓ Trouvée en base : {doc.brand.name}</p>
@@ -142,13 +142,13 @@ export default function PreviewPage() {
             <div>
               <p className="text-xs text-gray-400 mb-0.5">Produit</p>
               <p className="font-medium text-delabie-text">
-                {extracted.product ?? <span className="text-gray-400 italic">Non détecté</span>}
+                  {extracted.product?.name ?? <span className="text-gray-400 italic">Non détecté</span>}
               </p>
             </div>
             <div>
               <p className="text-xs text-gray-400 mb-0.5">Référence principale</p>
               <p className="font-medium font-mono text-delabie-text">
-                {extracted.reference ?? <span className="text-gray-400 italic">Non trouvée</span>}
+                  {extracted.reference?.toString() ?? <span className="text-gray-400 italic">Non trouvée</span>}
               </p>
               {doc.product && (
                 <p className="text-xs text-green-600 mt-0.5">✓ Produit en base : {doc.product.name}</p>
